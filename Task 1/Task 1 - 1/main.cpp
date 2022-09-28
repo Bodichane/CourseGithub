@@ -11,7 +11,7 @@ using namespace std;
 \return Возвращает 0 случае успеха
 */
 
-const double getB(double x, double y, double z);
+const double getA(double x, double y, double z);
 
 /**
 *\brief Точка входа в программу
@@ -20,6 +20,8 @@ const double getB(double x, double y, double z);
 *\param z
 \return Возвращает 0 случае успеха
 */
+
+const double getB(double x, double y, double z);
 
 int main()
 {
