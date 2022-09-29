@@ -21,7 +21,7 @@ const double getA(double x, double y, double z);
 \return Возвращает 0 случае успеха
 */
 
-const double getA(double x, double y, double z);
+const double getB(double x, double y, double z);
 
 int main()
 {
