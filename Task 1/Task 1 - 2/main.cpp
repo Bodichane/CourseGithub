@@ -1,6 +1,7 @@
 #include<iostream>
 
 using namespace std;
+
 /**
 *\brief Функция расчёта по заданной формуле .
 *\param p Аргумент функции .
