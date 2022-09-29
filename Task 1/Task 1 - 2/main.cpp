@@ -1,26 +1,34 @@
 #include<iostream>
 
 using namespace std;
+/**
+*\brief Функция расчёта по заданной формуле .
+*\param p Аргумент функции .
+*\return Значение функции .
+*/
+
+double getP(double p);
 
 /**
 *\brief Точка входа в программу
-*\param weight
-*\param Nweight
 *\return Возвращает 0 случае успеха
 */
 
 int main()
 {
-	double weight;
-	double Nweight;
-
+        double p;
 	cout << "Введите значение веса = ";
-	cin >> weight;
+	cin >> p;
 	
-	Nweight = weight / 28.3;
-
-	cout << "Beca = " << weight <<" г" << endl;
-	cout << "Новая веса = " << Nweight << " унции" << endl;
+	double q = getP(p);	
+	cout << "Beca = " << p <<" г" << endl;
+	cout << "Новая веса = " << q << " унции" << endl;
 
 	return 0;
+}
+
+double getP(double p)
+{
+   const double s = 28.3;
+   return p / s;
 }
