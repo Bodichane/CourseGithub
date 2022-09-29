@@ -4,24 +4,29 @@
 using namespace std;
 
 /**
-*\brief Точка входа в программу
-*\param x
-*\param y
-*\param z
-\return Возвращает 0 случае успеха
+*\brief Функция расчёта по заданной формуле .
+*\param x Аргумент функции .
+*\param y Аргумент функции .
+*\param z Аргумент функции .
+*\return Значение функции .
 */
 
 const double getA(double x, double y, double z);
 
 /**
-*\brief Точка входа в программу
-*\param x
-*\param y
-*\param z
-\return Возвращает 0 случае успеха
+*\brief Функция расчёта по заданной формуле .
+*\param x Аргумент функции .
+*\param y Аргумент функции .
+*\param z Аргумент функции .
+*\return Значение функции .
 */
 
 const double getB(double x, double y, double z);
+
+/**
+*\brief Точка входа в программу
+\return Возвращает 0 случае успеха
+*/
 
 int main()
 {
