@@ -11,8 +11,8 @@ using namespace std;
 double getP(double p);
 
 /**
-*\brief Точка входа в программу
-*\return Возвращает 0 случае успеха
+*\brief Точка входа в программу .
+*\return Возвращает 0 случае успеха .
 */
 
 int main()
