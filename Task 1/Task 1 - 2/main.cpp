@@ -4,8 +4,8 @@ using namespace std;
 
 /**
 *\brief Функция расчёта по заданной формуле .
-*\param p Аргумент функции .
-*\return Значение функции .
+*\param p Вес .
+*\return Новый вес .
 */
 
 double getP(double p);
@@ -18,10 +18,9 @@ double getP(double p);
 int main()
 {
         double p;
-	cout << "Введите значение веса = ";
-	cin >> p;
+	cout << "Введите значение веса = "; cin >> p;
 	
-	double q = getP(p);	
+	const double q = getP(p);	
 	cout << "Beca = " << p <<" г" << endl;
 	cout << "Новая веса = " << q << " унции" << endl;
 
