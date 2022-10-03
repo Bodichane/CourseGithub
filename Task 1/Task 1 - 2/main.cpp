@@ -8,7 +8,7 @@ using namespace std;
 *\return Новый вес .
 */
 
-double getP(double p);
+double getP(const double p);
 
 /**
 *\brief Точка входа в программу .
@@ -17,7 +17,7 @@ double getP(double p);
 
 int main()
 {
-        double p;
+        const double p;
 	cout << "Введите значение веса = "; cin >> p;
 	
 	const double q = getP(p);	
@@ -27,7 +27,7 @@ int main()
 	return 0;
 }
 
-double getP(double p)
+double getP(const double p)
 {
    const double s = 28.3;
    return p / s;
