@@ -11,7 +11,7 @@ using namespace std;
 *\return Значение функции .
 */
 
-const double getA(double x, double y, double z);
+const double getA(const double x, const double y, const double z);
 
 /**
 *\brief Функция расчёта по заданной формуле .
@@ -21,7 +21,7 @@ const double getA(double x, double y, double z);
 *\return Значение функции .
 */
 
-const double getB(double x, double y, double z);
+const double getB(const double x, const double y, const double z);
 
 /**
 *\brief Точка входа в программу
@@ -43,12 +43,12 @@ int main()
 	return 0;
 }
 
-const double getA(double x, double y, double z)
+const double getA(const double x, const double y, const double z)
 {
 	return sqrt((x * x) + y) - (y * y) * sin((x + z) / x) * sin((x + z) / x) * sin((x + z) / x);
 }
 
-const double getB(double x, double y, double z)
+const double getB(const double x, const double y, const double z)
 {
 	return cos(x * x * x) * cos(x * x * x) - x / ((z * z) + (y * y));
 }
