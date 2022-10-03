@@ -10,7 +10,7 @@ using namespace std;
 * \return периметр прямоугольника .
 */
 
-double getPerimeter(double a, double b);
+double getPerimeter(const double a, const double b);
 
 /**
 * \brief Рассчивает площадь прямоугольника .
@@ -19,7 +19,7 @@ double getPerimeter(double a, double b);
 * \return площадь прямоугольника .
 */
 
-double getSurface(double a, double b);
+double getSurface(const double a, const double b);
 
 /**
 * \brief Рассчивает диагональ прямоугольника .
@@ -28,7 +28,7 @@ double getSurface(double a, double b);
 * \return диагональ прямоугольникаи .
 */
 
-double getDiagonal(double a, double b);
+double getDiagonal(const double a, const double b);
 
 /**
 * \brief Считать сторону прямоугольника из консоли .
@@ -104,17 +104,17 @@ int main()
 	return 0;
 }
 
-double getPerimeter(double a, double b)
+double getPerimeter(const double a, const double b)
 {
 	return (a + b) * 2;
 }
 
-double getSurface(double a, double b)
+double getSurface(const double a, const double b)
 {
 	return a * b;
 }
 
-double getDiagonal(double a, double b)
+double getDiagonal(const double a, const double b)
 {
 	return a * a + b * b;
 }
