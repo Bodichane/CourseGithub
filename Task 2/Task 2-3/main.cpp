@@ -4,30 +4,22 @@ using namespace std;
 
 /**
 * \brief Рассчивает Время в пути для путешественника.
-* \param v1 Скорость путешественника.
-* \param s1 Расстояние, пройденное путешественника.
+* \param v Скорость путешественника.
+* \param s Расстояние, пройденное путешественника.
 * \return Время в пути путника.
 */
 
-double const getTime1(const double v1, const double s1);   
+double getTime(const double v, const double s);   
 
 /**
 * \brief Рассчивает Время в пути для путешественника.
-* \param v2 Скорость путешественника.
-* \param s2 Расстояние, пройденное путешественника.
+* \param t1 Время в пути для путешественника для скорости v1.
+* \param t2 Время в пути для путешественника для скорости v2.
+* \param t3 Время в пути для путешественника для скорости v3.
 * \return Время в пути путника.
 */
 
-double const getTime2(const double v2, const double s2);
-
-/**
-* \brief Рассчивает Время в пути для путешественника.
-* \param v3 Скорость путешественника.
-* \param s3 Расстояние, пройденное путешественника.
-* \return Время в пути путника.
-*/
-
-double const getTime3(const double v3, const double s3);
+double sum(const double t1, const double t2, const double t3);
 
 /**
 * \brief Считать скорость и расстояние из консоли.
@@ -54,9 +46,11 @@ int main()
         
         const double v3 = getSide("\nВведите значение скорости v3 = ");
         const double s3 = getSide("Введите значение расстояние s3 = ");
-        
-        const double half = 0.5;
-        const double T = half * (getTime1(v1, s1) + getTime2(v2, s2) + getTime3(v3, s3));
+
+        const double t1 = getTime(v1, s1);
+        const double t2 = getTime(v2, s2);
+        const double t3 = getTime(v3, s3);
+        const double T = sum(t1, t2, t3);
     
         cout << "\nВремя, чтобы пройти половину пути, составляет : " << T << " м/с";
     }
@@ -69,19 +63,15 @@ int main()
     return 0;
 }
 
-double const getTime1(const double v1, const double s1)
+double getTime(const double v, const double s)
 {
-    return s1 / v1;
+    return s / v;  
 }
 
-double const getTime2(const double v2, const double s2)
+double sum(const double t1, const double t2, const double t3)
 {
-    return s2 / v2;
-}
-
-double const getTime3(const double v3, const double s3)
-{
-    return s3 / v3;
+    const double half = 0.5;
+    return half * (t1 + t2 + t3);
 }
 
 double getSide(const string& message)
