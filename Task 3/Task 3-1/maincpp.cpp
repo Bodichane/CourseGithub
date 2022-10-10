@@ -43,7 +43,7 @@ bool isExists(const double x)
 
 }
 
-double Function(const double x)
+double getY(const double x)
 {
 
 }
