@@ -1,4 +1,7 @@
 #include<iostream>
+#include<cmath>
+#include<limits>
+#include<iomanip>
 
 using namespace std;
 
@@ -30,9 +33,21 @@ int main()
 	const double step = 0.1;
 	double x = xStart;
 
+	cout << setw(10) << " x " << " " << " y " << "\n";
+
 	while (x <= xFinish)
 	{
+		if (isExists(x))
+		{
+			const double y = getY(x);
+			cout << setw(10) << x << " " << y << "\n";
+		}
+		else
+		{
+			cout << setw(10) << x << " " << "Нет решения \n";
+		}
 
+		x += step;
 	}
 
 	return 0;
@@ -40,10 +55,10 @@ int main()
 
 bool isExists(const double x)
 {
-
+	return abs(x) > numeric_limits<double>::min();
 }
 
 double getY(const double x)
 {
-
+	return  cos(2 / x) - 2 * sin(1 / x) + 1 / x;
 }
