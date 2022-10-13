@@ -60,7 +60,7 @@ double getSum(const size_t count)
 		sum += current;
 	}
 
-	return 0.0;
+	return sum;
 }
 
 double getRecurrent(const size_t k)
