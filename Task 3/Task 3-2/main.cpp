@@ -34,9 +34,18 @@ double getRecurrent(const size_t k);
 
 int main()
 {
-	const auto count = getCount("Введите количество членов последовательности = ");
+    try
+    {
+        const auto count = getCount("Введите количество членов последовательности = ");
 	const auto sum = getSum(count);
 	cout << " " << sum << "\n";
+    }
+    catch (out_of_range&)
+	{
+		cout << "неправильная cторона!";
+		return 1;
+	}
+	
 
 	return 0;
 }
@@ -46,6 +55,12 @@ size_t getCount(const string& message)
 	cout << message;
 	int count;
 	cin >> count;
+	
+	if (count <= 0)
+	{
+		throw out_of_range("неправильная cторона!");
+	}
+	
 	return count;
 }
 
