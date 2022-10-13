@@ -38,9 +38,9 @@ int main()
         
         cout << "\nРабота в электродвигателе вентилятора = " << W << " Дж";
     }
-    catch (out_of_range&)
+    catch (out_of_range e)
 	{
-		cout << "неправильная значение!";
+		cout << e.what();
 		return 1;
 	}
     
