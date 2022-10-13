@@ -42,7 +42,7 @@ int main()
     }
     catch (out_of_range&)
 	{
-		cout << "неправильная cторона!";
+		cout << "неправильная значение!";
 		return 1;
 	}
 	
@@ -58,7 +58,7 @@ size_t getCount(const string& message)
 	
 	if (count <= 0)
 	{
-		throw out_of_range("неправильная cторона!");
+		throw out_of_range("неправильная значение!");
 	}
 	
 	return count;
