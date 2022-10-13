@@ -9,7 +9,7 @@ using namespace std;
 * \return Количество членов последовательности.
 */
 
-size_t getCount(const string& message = "");
+size_t getCount(const string& message);
 
 /**
 * \brief Рассчитывает сумму последовательности.
@@ -34,14 +34,14 @@ double getRecurrent(const size_t k);
 
 int main()
 {
-	const auto count = ("Введите количество членов последовательности");
-	const double sum = getSum(count);
+	const auto count = getCount("Введите количество членов последовательности = ");
+	const auto sum = getSum(count);
 	cout << " " << sum << "\n";
 
 	return 0;
 }
 
-size_t getCount(const string& message = "")
+size_t getCount(const string& message)
 {
 	cout << message;
 	int count;
