@@ -5,7 +5,20 @@
 
 using namespace std;
 
+/**
+* \brief Считать ток и напряжение.
+* \param message Сообщение пользователю.
+* \return значение ток и напряжение.
+*/
+
 double getValue(const string& message);
+
+/**
+* \brief Расчет работы в электродвигателе вентилятора.
+* \param I Тока в электродвигателе вентилятора.
+* \param U Напряжение в электродвигателе вентилятора.
+* \return Значение работы в электродвигателе вентилятора
+*/
 
 double getWork(const double I, const double U);
 
