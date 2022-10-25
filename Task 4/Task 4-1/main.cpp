@@ -10,7 +10,7 @@ using namespace std;
 * \return размер массива.
 */
 
-size_t getSize(const string &message);
+size_t getSize(const string& message);
 
 /**
 * \brief Считывает значения элементов массива клавиатуры.
@@ -85,19 +85,19 @@ int main()
 
 		switch (choice)
 		{
-			case arrayInputChoice::MANUAL:
-			{
-				myArray = getManualInputArray(size);
-				break;
-			}
-			case arrayInputChoice::RANDOM:
-			{
-				myArray = getRandomInputArray(size);
-				break;
-			}
-			default:
-				cerr << "Вы ввели некорректное действие!";
-				return 1;
+		case arrayInputChoice::MANUAL:
+		{
+			myArray = getManualInputArray(size);
+			break;
+		}
+		case arrayInputChoice::RANDOM:
+		{
+			myArray = getRandomInputArray(size);
+			break;
+		}
+		default:
+			cerr << "Вы ввели некорректное действие!";
+			return 1;
 		}
 
 		const auto k = getSize("\nВведите значение k = ");
@@ -111,16 +111,16 @@ int main()
 			myArray = nullptr;
 		}
 	}
-	catch(exception& e)
+	catch (exception& e)
 	{
 		cerr << e.what();
 		return 1;
 	}
-	
+
 	return 0;
 }
 
-size_t getSize(const string &message)
+size_t getSize(const string& message)
 {
 	cout << message;
 	const int TRESHOLD = 1;
@@ -151,12 +151,12 @@ int* getManualInputArray(const size_t size)
 
 int* getRandomInputArray(const size_t size, const int minValue, const int maxValue)
 {
-	random_device rd;  
-	mt19937 gen(rd()); 
+	random_device rd;
+	mt19937 gen(rd());
 	uniform_int_distribution <int> distrib(minValue, maxValue);
 
 	int* myArray = new int[size];
-	
+
 	cout << "Массив:\n";
 	for (size_t i = 0; i < size; i++)
 	{
@@ -174,11 +174,11 @@ int* showIndex(int* array, const size_t size)
 
 void print(int* array, const size_t size, ostream& out)
 {
-    if(array == nullptr)
-    {
-      throw out_of_range("Массив не определен!");
-    }
-  
+	if (array == nullptr)
+	{
+		throw out_of_range("Массив не определен!");
+	}
+
 	out << "Массив:\n";
 	for (size_t i = 0; i < size; i++)
 	{
@@ -188,13 +188,18 @@ void print(int* array, const size_t size, ostream& out)
 
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k)
 {
-  if(array == nullptr)
-  {
-      throw out_of_range("Массив не определен!");
-  }
-  
-  for(size_t i = k - 1; i < size; i--)
-  {
-      array[i] *= -1;
-  }
+	if (array == nullptr)
+	{
+		throw out_of_range("Массив не определен!");
+	}
+
+	const int temp = size - 1;
+	if (temp < 0)
+	{
+		throw out_of_range("Размер массива не позволяет выполнить данную функцию!");
+	}
+	for (size_t i = size - 1; i >= k; i--)
+	{
+		array[i] *= -1;
+	}
 }
