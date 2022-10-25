@@ -46,7 +46,7 @@ int* showIndex(int* array, const size_t size);
 * \param out Поток вывода.
 */
 
-void print(int* myArray, const size_t size, ostream& out = cout);
+void print(int* array, const size_t size, ostream& out = cout);
 
 /**
 * \brief Меняет последние к элементов массива на противоположные по знаку.
@@ -100,7 +100,7 @@ int main()
 				return 1;
 		}
 
-		const auto k = getSize("Введите значение k = ");
+		const auto k = getSize("\nВведите значение k = ");
 		exhcangeLastKElementByOpposite(myArray, size, k);
 		cout << "Меняет последние к элементов массива на противоположные по знаку.\n";
 		print(myArray, size);
@@ -149,7 +149,7 @@ int* getManualInputArray(const size_t size)
 	return myArray;
 }
 
-int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100)
+int* getRandomInputArray(const size_t size, const int minValue, const int maxValue)
 {
 	random_device rd;  
 	mt19937 gen(rd()); 
@@ -157,9 +157,11 @@ int* getRandomInputArray(const size_t size, const int minValue = -100, const int
 
 	int* myArray = new int[size];
 	
+	cout << "Массив:\n";
 	for (size_t i = 0; i < size; i++)
 	{
 		myArray[i] = distrib(gen);
+		cout << "A[" << i + 1 << "] = " << myArray[i] << "\n";
 	}
 
 	return myArray;
@@ -170,17 +172,29 @@ int* showIndex(int* array, const size_t size)
 	return nullptr;
 }
 
-void print(int* myArray, const size_t size, ostream& out = cout)
+void print(int* array, const size_t size, ostream& out)
 {
-	out << "Массив\n";
+    if(array == nullptr)
+    {
+      throw out_of_range("Массив не определен!");
+    }
+  
+	out << "Массив:\n";
 	for (size_t i = 0; i < size; i++)
 	{
-		out << myArray[i] << " ";
-		out << "\n";
+		out << array[i] << " ";
 	}
 }
 
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k)
 {
-
+  if(array == nullptr)
+  {
+      throw out_of_range("Массив не определен!");
+  }
+  
+  for(size_t i = k - 1; i < size; i--)
+  {
+      array[i] *= -1;
+  }
 }
