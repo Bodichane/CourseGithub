@@ -37,7 +37,7 @@ int* getRandomInputArray(const size_t size, const int minValue = -100, const int
 * \ return индексы.
 */
 
-int* showIndex(int* array, const size_t size);
+void showIndex(int* array, const size_t size);
 
 /**
 * \brief Печатает массив.
@@ -57,6 +57,9 @@ void print(int* array, const size_t size, ostream& out = cout);
 
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 
+
+size_t getPairElements(int* array, size_t size);
+
 enum class arrayInputChoice
 {
 	MANUAL = 1,
@@ -75,9 +78,9 @@ int main()
 		const auto size = getSize("Введите размер массива = ");
 		int* myArray = nullptr;
 
-		cout << "\nВведите требуемое действие. \n "
+		cout << "\nВведите требуемое действие.\n"
 			<< static_cast<int>(arrayInputChoice::MANUAL) << " - Для ручного ввода массива "
-			<< static_cast<int>(arrayInputChoice::RANDOM) << " - Для произвольного ввода массива\n  ";
+			<< static_cast<int>(arrayInputChoice::RANDOM) << " - Для произвольного ввода массива\n";
 
 		int input = 0;
 		cin >> input;
@@ -100,10 +103,21 @@ int main()
 			return 1;
 		}
 
-		const auto k = getSize("\nВведите значение k = ");
+		const auto k = getSize("\n\nВведите значение k = ");
 		exhcangeLastKElementByOpposite(myArray, size, k);
 		cout << "Меняет последние к элементов массива на противоположные по знаку.\n";
 		print(myArray, size);
+		showIndex(myArray, size);
+
+		const auto numberPair = getPairElements(myArray, size);
+		if (numberPair == 0)
+		{
+			cout << "\n\nНомер первой пары соседей, которая дает сумму числа = " << i;
+		}
+		else
+		{
+			cout << "\n\nНе существует соседнего числа, сумма которого дает другое число!";
+		}
 
 		if (myArray != nullptr)
 		{
@@ -142,7 +156,6 @@ int* getManualInputArray(const size_t size)
 
 	for (size_t i = 0; i < size; i++)
 	{
-		cout << "A[" << i + 1 << "] = ";
 		cin >> myArray[i];
 	}
 
@@ -157,19 +170,35 @@ int* getRandomInputArray(const size_t size, const int minValue, const int maxVal
 
 	int* myArray = new int[size];
 
-	cout << "Массив:\n";
+	cout << "\nМассив:\n";
 	for (size_t i = 0; i < size; i++)
 	{
 		myArray[i] = distrib(gen);
-		cout << "A[" << i + 1 << "] = " << myArray[i] << "\n";
+		cout << myArray[i] << " ";
 	}
 
 	return myArray;
 }
 
-int* showIndex(int* array, const size_t size)
+void showIndex(int* array, const size_t size)
 {
-	return nullptr;
+	if (array == nullptr)
+	{
+		throw out_of_range("Массив не определен!");
+	}
+
+	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
+	for (size_t i = 0; i < size; i++)
+	{
+		if (array[i] % 3 == 0)
+		{
+			cout << i + 1 << " ";
+		}
+		else
+		{
+			cout << "В массивe нет кратных 3.";
+		}
+	}
 }
 
 void print(int* array, const size_t size, ostream& out)
@@ -198,8 +227,19 @@ void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k)
 	{
 		throw out_of_range("Размер массива не позволяет выполнить данную функцию!");
 	}
-	for (size_t i = size - 1; i >= k; i--)
+
+	for (size_t i = size - 1; i > k; i--)
 	{
 		array[i] *= -1;
 	}
+}
+
+size_t getPairElements(int* array, size_t size)
+{
+	size_t numberPair = 0;
+	while (numberPair < size - 1 && array[numberPair] + array[numberPair + 1] == array[numberPair + 2])
+	{
+		numberPair++;
+	}
+	return numberPair + 1;
 }
