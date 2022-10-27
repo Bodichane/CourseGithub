@@ -1,68 +1,69 @@
-
-
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<cmath>
 
 using namespace std;
 
 /**
-* \brief Считать ток и напряжение.
+* \brief Считать количество членов последовательности.
 * \param message Сообщение пользователю.
-* \return значение ток и напряжение.
+* \return Количество членов последовательности.
 */
 
-double getValue(const string& message);
+size_t getCount(const string& message = "");
 
 /**
-* \brief Расчет работы в электродвигателе вентилятора.
-* \param I Тока в электродвигателе вентилятора.
-* \param U Напряжение в электродвигателе вентилятора.
-* \return Значение работы в электродвигателе вентилятора
+* \brief Рассчитывает сумму последовательности.
+* \param count Количество членов последовательности.
+* \return Сумма последовательности.
 */
 
-double getWork(const double I, const double U);
+double getSum(const size_t count);
+
+/**
+* \brief Рассчитывает рекуррентный член последовательности.
+* \param k Количество членов последовательности.
+* \return Значение рекуррентного член последовательности.
+*/
+
+double getRecurrent(const size_t k);
 
 /**
 * \brief Точка входа в программу
 * \return Возвращает 0 случае успеха
 */
 
-
 int main()
 {
-    try
-    {
-        const double I = getValue("Введите значение тока I = ");
-        const double U = getValue("Введите значение напряжение U = ");
-        const double W = getWork(I, U);
+	const auto count = ("Введите количество членов последовательности");
+	const double sum = getSum(count);
+	cout << " " << sum << "\n";
 
-        cout << "\nРабота в электродвигателе вентилятора = " << W << " Дж";
-    }
-    catch (out_of_range e)
-    {
-        cout << e.what();
-        return 1;
-    }
-
-    return 0;
+	return 0;
 }
 
-double getValue(const string& message)
+size_t getCount(const string& message = "")
 {
-    cout << message;
-    double value = 0.0;
-    cin >> value;
-
-    if (value <= 0)
-    {
-        throw out_of_range("неправильная значение!");
-    }
-
-    return value;
+	cout << message;
+	int count;
+	cin >> count;
+	return count;
 }
 
-double getWork(const double I, const double U)
+double getSum(const size_t count)
 {
-    const double t = 1200;
-    return I * U * t;
+	double current = 1;
+	double sum = current;
+
+	for (size_t k = 2; k <= count; k++)
+	{
+		current *= getRecurrent(k);
+		sum += current;
+	}
+
+	return 0.0;
+}
+
+double getRecurrent(const size_t k)
+{
+	return (k + 1) * (k + 1) * (k + 1) / pow(k, 4);
 }
