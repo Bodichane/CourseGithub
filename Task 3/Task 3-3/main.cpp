@@ -75,5 +75,5 @@ double getFunction(const double x)
 double getSum(const double x)
 {
 	const int n;
-	return n / 2 * ((pow(x, 4 * n + 1) / 4 * n + 1) + x);
+	return 1 / 1 - x;
 }
