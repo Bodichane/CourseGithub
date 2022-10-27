@@ -6,20 +6,12 @@
 using namespace std;
 
 /**
-* \brief Существует ли функция в точке х.
-* \param x Аргумент функции.
-* \ return true,  если существует.
-*/
-
-bool isExists(const double x);
-
-/**
 * \brief Расчёт функции в  точке х.
 * \param x Аргумент функции.
 * \return Значение функции в точке х.
 */
 
-double getFunction(const double x);
+double getY(const double x);
 
 /**
 * \brief Расчёт сумма в  точке х.
@@ -41,39 +33,25 @@ int main()
 	const double step = 0.0003;
 	double x = xStart;
 
-	cout << setw(10) << " x " << " " << " Function " << " " << "Sum" << "\n";
+	cout << setw(10) << " x " << " " << " y " << " " << "Sum" << "\n";
 
 	while (x <= xFinish)
 	{
-		if (isExists(x))
-		{
-			const double function = getFunction(x);
-			const double sum = getSum(x);
-			cout << setw(10) << x << " " << function << " " << sum << "\n";
-		}
-		else
-		{
-			cout << setw(10) << x << " " << "Нет решения \n";
-		}
-
+		const double y = getY(x);
+		const double sum = getSum(x);
+		cout << setw(10) << x << "  " << y << "  " << sum << "\n";
 		x += step;
 	}
 
 	return 0;
 }
 
-bool isExists(const double x)
-{
-	return abs(1 - x) > numeric_limits<double>::min() && (x > 1);
-}
-
-double getFunction(const double x)
+double getY(const double x)
 {
 	return 1 / 4 * log(1 + x / 1 - x) + 1 / 2 * atan(x);
 }
 
 double getSum(const double x)
 {
-	const int n;
 	return 1 / 1 - x;
 }
