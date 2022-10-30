@@ -58,7 +58,7 @@ int main()
 		const double y = getY(x);
 		const double sum = getSum(x, epsilon);
 	
-	    FormatOutput(x, y, sum);
+	        FormatOutput(x, y, sum);
 
 		x += step;
 	}
