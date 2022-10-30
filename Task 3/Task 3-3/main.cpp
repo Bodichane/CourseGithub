@@ -73,7 +73,7 @@ double getY(const double x)
 
 double getSum(const double x, const double epsilon)
 {
-	auto previous = 0.0;
+    auto previous = 0.0;
     auto current = 1.0;
     auto sum = current;
 
