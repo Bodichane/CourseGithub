@@ -182,13 +182,9 @@ void showIndex(int* array, const size_t size)
 	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
 	for (size_t i = 0; i < size; i++)
 	{
-		if (array[i] % 3 == 0)
+		if ((array[i]%3) == 0)
 		{
-			cout << i + 1 << " ";
-		}
-		else
-		{
-			cout << "В массивe нет кратных 3.";
+			cout << i + 1 << ", ";
 		}
 	}
 }
@@ -241,7 +237,7 @@ void getPairElements(int* array, size_t size)
 	sort(array, array + size);
 	int i = 0;
 	int j = size - 1;
-	cout << "Элементы, сумма которых равна, " << sum << "являются :\n";
+	cout << "Элементы, сумма которых равна, " << sum << " являются :\n";
 	while (i < j) 
 	{
 		while ((array[i] + array[j]) <= sum && i < j)
