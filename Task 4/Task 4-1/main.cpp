@@ -179,13 +179,20 @@ void showIndex(int* array, const size_t size)
 		throw out_of_range("Массив не определен!");
 	}
 
+    bool b = false;
 	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
 	for (size_t i = 0; i < size; i++)
 	{
-		if ((array[i]%3) == 0)
+		if ((array[i] % 3) == 0)
 		{
 			cout << i + 1 << ", ";
+			b = true;
 		}
+	}
+	
+	if(b == false)
+	{
+	    throw out_of_range("В массиве нет кратных 3.");
 	}
 }
 
@@ -231,27 +238,39 @@ void getPairElements(int* array, size_t size)
 
 	cout << "\n\n";
 	int sum;
-	cout << "Введите значение элемента в таблице = ";
+	cout << "Введите значение = ";
 	cin >> sum;
 
 	sort(array, array + size);
 	int i = 0;
 	int j = size - 1;
+	bool b = false;
 	cout << "Элементы, сумма которых равна, " << sum << " являются :\n";
 	while (i < j) 
 	{
 		while ((array[i] + array[j]) <= sum && i < j)
 		{
 			if ((array[i] + array[j]) == sum)
+			{
 				cout << "(" << array[i] << "," << array[j] << ")" << endl;
+				b = true;
+			}	
 			i++;
 		}
 		j--;
 		while ((array[i] + array[j]) >= sum && i < j)
 		{
 			if ((array[i] + array[j]) == sum)
+			{
 				cout << "(" << array[i] << "," << array[j] << ")" << endl;
+				b = true;
+			}	
 			j--;
 		}
+	}
+	
+	if(b == false)
+	{
+	    cout << "В массиве нет пары элементов с суммой, равной " << sum;
 	}
 }
