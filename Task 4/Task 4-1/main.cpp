@@ -32,15 +32,6 @@ int* getManualInputArray(const size_t size);
 int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100);
 
 /**
-* \brief Вывести индексы тех элементов, значения которых кратны 3.
-* \param array Массив.
-* \param size Длина массива.
-* \ return индексы.
-*/
-
-void showIndex(int* array, const size_t size);
-
-/**
 * \brief Печатает массив.
 * \param array Массив.
 * \param size Длина массива.
@@ -58,6 +49,21 @@ void print(int* array, const size_t size, ostream& out = cout);
 
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 
+/**
+* \brief Вывести индексы тех элементов, значения которых кратны 3.
+* \param array Массив.
+* \param size Длина массива.
+* \ return индексы.
+*/
+
+void showIndex(int* array, const size_t size);
+
+/**
+* \brief Найти пару элементов из массива, сумма которых равна заданному числу.
+* \param array Массив.
+* \param size Длина массива.
+* \ return Пара элементов из массива.
+*/
 
 void getPairElements(int* array, size_t size);
 
@@ -172,30 +178,6 @@ int* getRandomInputArray(const size_t size, const int minValue, const int maxVal
 	return myArray;
 }
 
-void showIndex(int* array, const size_t size)
-{
-	if (array == nullptr)
-	{
-		throw out_of_range("Массив не определен!");
-	}
-
-    bool b = false;
-	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
-	for (size_t i = 0; i < size; i++)
-	{
-		if ((array[i] % 3) == 0)
-		{
-			cout << i + 1 << ", ";
-			b = true;
-		}
-	}
-	
-	if(b == false)
-	{
-	    throw out_of_range("В массиве нет кратных 3.");
-	}
-}
-
 void print(int* array, const size_t size, ostream& out)
 {
 	if (array == nullptr)
@@ -223,9 +205,33 @@ void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k)
 		throw out_of_range("Размер массива не позволяет выполнить данную функцию!");
 	}
 
-	for (size_t i = size - 1; i > k; i--)
+	for (size_t i = size - 1; i >= k; i--)
 	{
 		array[i] *= -1;
+	}
+}
+
+void showIndex(int* array, const size_t size)
+{
+	if (array == nullptr)
+	{
+		throw out_of_range("Массив не определен!");
+	}
+
+    bool b = false;
+	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
+	for (size_t i = 0; i < size; i++)
+	{
+		if ((array[i] % 3) == 0)
+		{
+			cout << i + 1 << " ";
+			b = true;
+		}
+	}
+	
+	if(b == false)
+	{
+	    throw out_of_range("В массиве нет кратных 3.");
 	}
 }
 
