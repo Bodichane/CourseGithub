@@ -1,6 +1,7 @@
 #include<iostream>
 #include <random>
 #include<string>
+#include<algorithm>
 
 using namespace std;
 
@@ -58,7 +59,7 @@ void print(int* array, const size_t size, ostream& out = cout);
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 
 
-size_t getPairElements(int* array, size_t size);
+void getPairElements(int* array, size_t size);
 
 enum class arrayInputChoice
 {
@@ -108,16 +109,7 @@ int main()
 		cout << "Меняет последние к элементов массива на противоположные по знаку.\n";
 		print(myArray, size);
 		showIndex(myArray, size);
-
-		const auto numberPair = getPairElements(myArray, size);
-		if (numberPair == 0)
-		{
-			cout << "\n\nНомер первой пары соседей, которая дает сумму числа = " << i;
-		}
-		else
-		{
-			cout << "\n\nНе существует соседнего числа, сумма которого дает другое число!";
-		}
+        getPairElements(myArray, size);
 
 		if (myArray != nullptr)
 		{
@@ -234,12 +226,36 @@ void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k)
 	}
 }
 
-size_t getPairElements(int* array, size_t size)
+void getPairElements(int* array, size_t size)
 {
-	size_t numberPair = 0;
-	while (numberPair < size - 1 && array[numberPair] + array[numberPair + 1] == array[numberPair + 2])
+	if (array == nullptr)
 	{
-		numberPair++;
+		throw out_of_range("Массив не определен!");
 	}
-	return numberPair + 1;
+
+	cout << "\n\n";
+	int sum;
+	cout << "Введите значение элемента в таблице = ";
+	cin >> sum;
+
+	sort(array, array + size);
+	int i = 0;
+	int j = size - 1;
+	cout << "Элементы, сумма которых равна, " << sum << "являются :\n";
+	while (i < j) 
+	{
+		while ((array[i] + array[j]) <= sum && i < j)
+		{
+			if ((array[i] + array[j]) == sum)
+				cout << "(" << array[i] << "," << array[j] << ")" << endl;
+			i++;
+		}
+		j--;
+		while ((array[i] + array[j]) >= sum && i < j)
+		{
+			if ((array[i] + array[j]) == sum)
+				cout << "(" << array[i] << "," << array[j] << ")" << endl;
+			j--;
+		}
+	}
 }
