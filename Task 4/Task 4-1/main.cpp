@@ -115,7 +115,7 @@ int main()
 		cout << "Меняет последние к элементов массива на противоположные по знаку.\n";
 		print(myArray, size);
 		showIndex(myArray, size);
-        getPairElements(myArray, size);
+                getPairElements(myArray, size);
 
 		if (myArray != nullptr)
 		{
@@ -218,7 +218,7 @@ void showIndex(int* array, const size_t size)
 		throw out_of_range("Массив не определен!");
 	}
 
-    bool b = false;
+    	bool b = false;
 	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
 	for (size_t i = 0; i < size; i++)
 	{
