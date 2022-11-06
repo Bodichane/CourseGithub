@@ -115,7 +115,7 @@ int main()
 		cout << "Меняет последние к элементов массива на противоположные по знаку.\n";
 		print(myArray, size);
 		showIndex(myArray, size);
-                getPairElements(myArray, size);
+		getPairElements(myArray, size);
 
 		if (myArray != nullptr)
 		{
@@ -218,7 +218,7 @@ void showIndex(int* array, const size_t size)
 		throw out_of_range("Массив не определен!");
 	}
 
-    	bool b = false;
+	bool b = false;
 	cout << "\n\nИндексы тех элементов, значения которых кратны 3 :\n";
 	for (size_t i = 0; i < size; i++)
 	{
@@ -228,10 +228,10 @@ void showIndex(int* array, const size_t size)
 			b = true;
 		}
 	}
-	
-	if(b == false)
+
+	if (b == false)
 	{
-	    throw out_of_range("В массиве нет кратных 3.");
+		cout << "В массиве нет кратных 3.";
 	}
 }
 
@@ -252,7 +252,7 @@ void getPairElements(int* array, size_t size)
 	int j = size - 1;
 	bool b = false;
 	cout << "Элементы, сумма которых равна, " << sum << " являются :\n";
-	while (i < j) 
+	while (i < j)
 	{
 		while ((array[i] + array[j]) <= sum && i < j)
 		{
@@ -260,7 +260,7 @@ void getPairElements(int* array, size_t size)
 			{
 				cout << "(" << array[i] << "," << array[j] << ")" << endl;
 				b = true;
-			}	
+			}
 			i++;
 		}
 		j--;
@@ -270,13 +270,13 @@ void getPairElements(int* array, size_t size)
 			{
 				cout << "(" << array[i] << "," << array[j] << ")" << endl;
 				b = true;
-			}	
+			}
 			j--;
 		}
 	}
-	
-	if(b == false)
+
+	if (b == false)
 	{
-	    cout << "В массиве нет пары элементов с суммой, равной " << sum;
+		cout << "В массиве нет пары элементов с суммой, равной " << sum;
 	}
 }
