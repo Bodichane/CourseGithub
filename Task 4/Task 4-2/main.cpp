@@ -1,48 +1,80 @@
 #include<iostream>
 #include <random>
 #include<string>
-#include<algorithm>
 
 using namespace std;
 
-/
+/**
 *\brief Считать размер массива.
-* \param message Побуждающее сообщение для пользователя.
-* \return размер массива.
-* /
+*\param message Побуждающее сообщение для пользователя.
+*\return размер массива.
+*/
 
-size_t getSize(const string & message);
+size_t getSize(const string& message);
 
-/
+/**
 *\brief Считывает значения элементов массива клавиатуры.
-* \param size Длина массива.
-* \ return Массив.
-* /
+*\param size Длина массива.
+*\return Массив.
+*/
 
 int* getManualInputArray(const size_t size);
 
-/
+/**
 *\brief Заполнение массива случайными числами.
-* \param size Длина массива.
-* \param minValue Минимальное значение массива.
-* \param maxValue максимальное значение массива.
-* \ return Массив.
-* /
+*\param size Длина массива.
+*\param minValue Минимальное значение массива.
+*\param maxValue максимальное значение массива.
+*\return Массив.
+*/
 
 int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100);
 
-/
+/**
 *\brief Печатает массив.
-* \param array Массив.
-* \param size Длина массива.
-* \param out Поток вывода.
-* /
+*\param array Массив.
+*\param size Длина массива.
+*\param out Поток вывода.
+*/
 
-void print(int* array, const size_t size, ostream & out = cout);
+void print(int* array, const size_t size, ostream& out = cout);
 
-void replaceElementByZero(int* array, const size_t size);
+/**
+*\brief Замените первый отрицательный элемент массива на ноль.
+*\param array Массив.
+*\param size Длина массива.
+* param out Отображает массива.
+*\return true если в массивае есть отрицательный элемент и false в противном случае.
+*/
 
-void insertK(int* array, const size_t size, size_t k);
+bool replaceElementByZero(int* array, const size_t size);
+
+/**
+*\brief Вставляет число K после всех элементов, кратных его номеру.
+*\param array Массив.
+*\param size Длина массива.
+*\param number Число, которое вы должны найти кратные.
+*\param k Вставьте после всех элементов, кратных number.
+*\return true если существует кратное нашему число и false в противном случае.
+*/
+
+bool insertK(int* array, const size_t size, size_t k, int number);
+
+/**
+*\brief Сформируйте стол A тех же размеров в соответствии с заданным правилом.
+*\param array Массив.
+*\param size Длина массива.
+*/
+
+void makeArrayA(int* array, const size_t size);
+
+/**
+*\brief Удалить таблицу.
+*\param array Массив.
+*\param size Длина массива.
+*/
+
+void deleteArray(int* array, const size_t size);
 
 enum class arrayInputChoice
 {
@@ -51,8 +83,8 @@ enum class arrayInputChoice
 };
 
 /**
-* \brief Точка входа в программу в  точке х.
-* \return Возвращает 0 случае успеха
+*\brief Точка входа в программу в  точке х.
+*\return Возвращает 0 случае успеха
 */
 
 int main()
@@ -87,17 +119,35 @@ int main()
             return 1;
         }
 
-        replaceElementByZero(array, size);
-        print(array, size);
-        const auto k = getSize("\n\nВведите значение k = ");
-        insertK(array, size, k);
+        bool a = replaceElementByZero(array, size);
+
+        if (a == false)
+        {
+            cout << "В массиве нет отрицательных элементов!";
+        }
+        else
+        {
+            print(array, size);
+        }
+
+        int number = getSize("\n\nВведите число : ");
+        const auto k = getSize("Введите значение k = ");
+        bool b = insertK(array, size, k, number);
+
+        if (b == false)
+        {
+            cout << "В массиве не существует кратного " << number;
+        }
+        else
+        {
+            print(array, size);
+        }
+
+        makeArrayA(array, size);
         print(array, size);
 
-        if (array != nullptr)
-        {
-            delete[] array;
-            array = nullptr;
-        }
+        deleteArray(array, size);
+
     }
     catch (exception& e)
     {
@@ -108,7 +158,7 @@ int main()
     return 0;
 }
 
-size_t getSize(const string & message)
+size_t getSize(const string& message)
 {
     cout << message;
     const int TRESHOLD = 1;
@@ -126,7 +176,7 @@ size_t getSize(const string & message)
 int* getManualInputArray(const size_t size)
 {
     int* myArray = new int[size];
-    cout << "\nВведите элементов массива\n";
+    cout << "\nВведите элементов массива :\n";
 
     for (size_t i = 0; i < size; i++)
     {
@@ -154,7 +204,7 @@ int* getRandomInputArray(const size_t size, const int minValue, const int maxVal
     return array;
 }
 
-void print(int* array, const size_t size, ostream & out)
+void print(int* array, const size_t size, ostream& out)
 {
     if (array == nullptr)
     {
@@ -168,39 +218,35 @@ void print(int* array, const size_t size, ostream & out)
     }
 }
 
-void replaceElementByZero(int* array, const size_t size)
+bool replaceElementByZero(int* array, const size_t size)
 {
     if (array == nullptr)
     {
         throw out_of_range("Массив не определен!");
     }
 
-    bool b = false;
-    cout << "\n\nЗамените первый отрицательный элемент массивa нулем.\n";
+    bool a = false;
+    cout << "\n\nЗамените первый отрицательный элемент массивa на ноль.\n";
     for (size_t i = 0; i < size; i++)
     {
         if (array[i] < 0)
         {
             array[i] = 0;
-            b = true;
+            a = true;
             break;
         }
     }
 
-    if (b == false)
-    {
-        throw out_of_range("В массиве нет отрицательных элементов!");
-    }
+    return a;
 }
 
-void insertK(int* array, const size_t size, size_t k)
+bool insertK(int* array, const size_t size, size_t k, int number)
 {
     if (array == nullptr)
     {
         throw out_of_range("Массив не определен!");
     }
 
-    int number = 3;
     bool b = false;
 
     for (size_t i = 0; i < size; i++)
@@ -212,8 +258,36 @@ void insertK(int* array, const size_t size, size_t k)
         }
     }
 
-    if (b == false)
+    return b;
+}
+
+void makeArrayA(int* array, const size_t size)
+{
+    if (array == nullptr)
     {
-        cout << "В массиве не существует кратного " << number;
+        throw out_of_range("Массив не определен!");
+    }
+
+    cout << "\n\nОтображение новой массив A :\n";
+    for (size_t i = 0; i < size; i++)
+    {
+        if ((array[i] % 2) == 0)
+        {
+            array[i] *= (i - 1);
+        }
+        else
+        {
+            array[i] *= i * 2;
+        }
     }
 }
+
+void deleteArray(int* array, const size_t size)
+{
+    if (array != nullptr)
+    {
+        delete[] array;
+        array = nullptr;
+    }
+}
+
