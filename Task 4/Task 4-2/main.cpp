@@ -9,7 +9,6 @@ using namespace std;
 *\param message Побуждающее сообщение для пользователя.
 *\return размер массива.
 */
-
 size_t getSize(const string& message);
 
 /**
@@ -17,7 +16,6 @@ size_t getSize(const string& message);
 *\param size Длина массива.
 *\return Массив.
 */
-
 int* getManualInputArray(const size_t size);
 
 /**
@@ -27,7 +25,6 @@ int* getManualInputArray(const size_t size);
 *\param maxValue максимальное значение массива.
 *\return Массив.
 */
-
 int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100);
 
 /**
@@ -36,7 +33,6 @@ int* getRandomInputArray(const size_t size, const int minValue = -100, const int
 *\param size Длина массива.
 *\param out Поток вывода.
 */
-
 void print(int* array, const size_t size, ostream& out = cout);
 
 /**
@@ -46,7 +42,6 @@ void print(int* array, const size_t size, ostream& out = cout);
 * param out Отображает массива.
 *\return true если в массивае есть отрицательный элемент и false в противном случае.
 */
-
 bool replaceElementByZero(int* array, const size_t size);
 
 /**
@@ -57,15 +52,13 @@ bool replaceElementByZero(int* array, const size_t size);
 *\param k Вставьте после всех элементов, кратных number.
 *\return true если существует кратное нашему число и false в противном случае.
 */
-
-bool insertK(int* array, const size_t size, size_t k, int number);
+bool insertK(int* array, const size_t size, size_t k, int number, bool b);
 
 /**
 *\brief Сформируйте стол A тех же размеров в соответствии с заданным правилом.
 *\param array Массив.
 *\param size Длина массива.
 */
-
 void makeArrayA(int* array, const size_t size);
 
 /**
@@ -73,7 +66,6 @@ void makeArrayA(int* array, const size_t size);
 *\param array Массив.
 *\param size Длина массива.
 */
-
 void deleteArray(int* array, const size_t size);
 
 enum class arrayInputChoice
@@ -132,7 +124,8 @@ int main()
 
         int number = getSize("\n\nВведите число : ");
         const auto k = getSize("Введите значение k = ");
-        bool b = insertK(array, size, k, number);
+        bool b;
+        insertK(array, size, k, number, b);
 
         if (b == false)
         {
@@ -240,14 +233,14 @@ bool replaceElementByZero(int* array, const size_t size)
     return a;
 }
 
-bool insertK(int* array, const size_t size, size_t k, int number)
+bool insertK(int* array, const size_t size, size_t k, int number, bool b)
 {
     if (array == nullptr)
     {
         throw out_of_range("Массив не определен!");
     }
 
-    bool b = false;
+    b = false;
 
     for (size_t i = 0; i < size; i++)
     {
@@ -268,7 +261,7 @@ void makeArrayA(int* array, const size_t size)
         throw out_of_range("Массив не определен!");
     }
 
-    cout << "\n\nОтображение новой массив A :\n";
+    cout << "\n\n";
     for (size_t i = 0; i < size; i++)
     {
         if ((array[i] % 2) == 0)
