@@ -39,7 +39,7 @@ void print(int* array, const size_t size, ostream& out = cout);
 *\brief Замените первый отрицательный элемент массива на ноль.
 *\param array Массив.
 *\param size Длина массива.
-* param out Отображает массива.
+*\param out Отображает массива.
 *\return true если в массивае есть отрицательный элемент и false в противном случае.
 */
 bool replaceElementByZero(int* array, const size_t size);
