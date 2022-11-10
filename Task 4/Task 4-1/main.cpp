@@ -15,7 +15,7 @@ size_t getSize(const string& message);
 /**
 * \brief Считывает значения элементов массива клавиатуры.
 * \param size Длина массива.
-* \ return Массив.
+* \return Массив.
 */
 int* getManualInputArray(const size_t size);
 
@@ -24,7 +24,7 @@ int* getManualInputArray(const size_t size);
 * \param size Длина массива.
 * \param minValue Минимальное значение массива.
 * \param maxValue максимальное значение массива.
-* \ return Массив.
+* \return Массив.
 */
 int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100);
 
@@ -48,7 +48,7 @@ void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 * \brief Вывести индексы тех элементов, значения которых кратны 3.
 * \param array Массив.
 * \param size Длина массива.
-* \ return индексы.
+* \return индексы.
 */
 void showIndex(int* array, const size_t size);
 
@@ -56,7 +56,7 @@ void showIndex(int* array, const size_t size);
 * \brief Найти пару элементов из массива, сумма которых равна заданному числу.
 * \param array Массив.
 * \param size Длина массива.
-* \ return Пара элементов из массива.
+* \return Пара элементов из массива.
 */
 void getPairElements(int* array, size_t size);
 
