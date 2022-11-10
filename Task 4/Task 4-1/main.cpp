@@ -10,7 +10,6 @@ using namespace std;
 * \param message Побуждающее сообщение для пользователя.
 * \return размер массива.
 */
-
 size_t getSize(const string& message);
 
 /**
@@ -18,7 +17,6 @@ size_t getSize(const string& message);
 * \param size Длина массива.
 * \ return Массив.
 */
-
 int* getManualInputArray(const size_t size);
 
 /**
@@ -28,7 +26,6 @@ int* getManualInputArray(const size_t size);
 * \param maxValue максимальное значение массива.
 * \ return Массив.
 */
-
 int* getRandomInputArray(const size_t size, const int minValue = -100, const int maxValue = 100);
 
 /**
@@ -37,7 +34,6 @@ int* getRandomInputArray(const size_t size, const int minValue = -100, const int
 * \param size Длина массива.
 * \param out Поток вывода.
 */
-
 void print(int* array, const size_t size, ostream& out = cout);
 
 /**
@@ -46,7 +42,6 @@ void print(int* array, const size_t size, ostream& out = cout);
 * \param size Длина массива.
 * \param k Количество элементов для замены
 */
-
 void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 
 /**
@@ -55,7 +50,6 @@ void exhcangeLastKElementByOpposite(int* array, const size_t size, size_t k);
 * \param size Длина массива.
 * \ return индексы.
 */
-
 void showIndex(int* array, const size_t size);
 
 /**
@@ -64,7 +58,6 @@ void showIndex(int* array, const size_t size);
 * \param size Длина массива.
 * \ return Пара элементов из массива.
 */
-
 void getPairElements(int* array, size_t size);
 
 enum class arrayInputChoice
