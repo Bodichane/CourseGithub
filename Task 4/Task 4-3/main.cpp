@@ -46,14 +46,19 @@ int** getRandomInputArray(const size_t n, const size_t m, const int minValue = -
 */
 void print(int** array, const size_t n, const size_t m, ostream& out = cout);
 
+
+int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m);
+
+
+int** insertColumn(int** array, const size_t n, const size_t m);
+
 /**
-*\brief Замените максимальный элемент в каждом ряду на противоположный знак.
+*\brief Удалить таблицу.
 *\param array Массив.
 *\param n количество строк массива.
 *\param m количество столбцов массива.
-*\return Hовый массив.
 */
-int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m);
+void deleteArray(int** array, const size_t n, const size_t m);
 
 enum class arrayInputChoice
 {
@@ -99,12 +104,15 @@ int main()
             return 1;
         }
 
-
-        int** arr_1 = replaceMaxElementByOpposite(array, n, m);
+        int** array_1 = replaceMaxElementByOpposite(array, n, m);
         cout << "\nЗамените максимальный элемент в каждом ряду на противоположный знак.\n";
-        print(arr_1, n, m);
+        print(array_1, n, m);
 
-
+        int** array_2 = insertColumn(array, n, m);
+        cout << "\n\nВставьте столбец нулей после всех столбцов, содержащих максимальный элемент.\n";
+        print(array_2, n, m);
+        
+        deleteArray(array, n, m);
     }
     catch (exception& e)
     {
@@ -144,14 +152,14 @@ int** createArray(const size_t n, const size_t m)
 int** getManualInputArray(const size_t n, const size_t m)
 {
     int** array = createArray(n, m);
-    cout << "\nВведите элементов массива\n";
+    cout << "\nВведите элементов массива.\n";
 
     for (size_t i = 0; i < n; i++)
     {
         for (size_t j = 0; j < m; j++)
         {
             int k = 0;
-            cout << " array[" << i << "][" << j << "] = ";
+            cout << "array[" << i << "][" << j << "] = ";
             cin >> k;
             array[i][j] = k;
         }
@@ -174,7 +182,7 @@ int** getRandomInputArray(const size_t n, const size_t m, const int minValue, co
         for (size_t j = 0; j < m; j++)
         {
             array[i][j] = distrib(gen);
-            cout << " array[" << i << "][" << j << "] = " << array[i][j] << "\n";
+            cout << "array[" << i << "][" << j << "] = " << array[i][j] << "\n";
         }
     }
 
@@ -208,7 +216,7 @@ int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m)
 
     for (int i = 0; i < n; i++)
     {
-        double max = array[i][0];
+        int max = array[i][0];
         int max_j = 0;
 
         for (int j = 1; j < m; j++)
@@ -222,4 +230,38 @@ int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m)
         array[i][max_j] *= (-1);
     }
     return array;
+}
+
+int** insertColumn(int** array, const size_t n, const size_t m)
+{
+    if (array == nullptr)
+    {
+        throw out_of_range("Массив не определен!");
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        int max = array[i][0];
+        int max_j = 0;
+
+        for (int j = 1; j < m; j++)
+        {
+            if (array[i][j] > max)
+            {
+                max = array[i][j];
+                max_j = j + 1;
+            }
+        }
+        array[i][max_j] *= 0;
+    }
+    return array;
+}
+
+void deleteArray(int** array, const size_t n, const size_t m)
+{
+    if (array != nullptr)
+    {
+        delete[] array;
+        array = nullptr;
+    }
 }
