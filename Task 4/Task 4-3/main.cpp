@@ -46,10 +46,22 @@ int** getRandomInputArray(const size_t n, const size_t m, const int minValue = -
 */
 void print(int** array, const size_t n, const size_t m, ostream& out = cout);
 
-
+/**
+*\brief Замените максимальный элемент в каждом ряду на противоположный знак.
+*\param array Массив.
+*\param n количество строк массива.
+*\param m количество столбцов массива.
+*\return Новый массив.
+*/
 int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m);
 
-
+/**
+*\brief Вставьте столбец нулей после всех столбцов, содержащих максимальный элемент.
+*\param array Массив.
+*\param n количество строк массива.
+*\param m количество столбцов массива.
+*\return Новый массив.
+*/
 int** insertColumn(int** array, const size_t n, const size_t m);
 
 /**
@@ -58,7 +70,7 @@ int** insertColumn(int** array, const size_t n, const size_t m);
 *\param n количество строк массива.
 *\param m количество столбцов массива.
 */
-void deleteArray(int** array, const size_t n, const size_t m);
+void deleteArray(int** array, const size_t n);
 
 enum class arrayInputChoice
 {
@@ -112,7 +124,7 @@ int main()
         cout << "\n\nВставьте столбец нулей после всех столбцов, содержащих максимальный элемент.\n";
         print(array_2, n, m);
         
-        deleteArray(array, n, m);
+        deleteArray(array, n);
     }
     catch (exception& e)
     {
@@ -214,12 +226,12 @@ int** replaceMaxElementByOpposite(int** array, const size_t n, const size_t m)
         throw out_of_range("Массив не определен!");
     }
 
-    for (int i = 0; i < n; i++)
+    for (size_t i = 0; i < n; i++)
     {
         int max = array[i][0];
         int max_j = 0;
 
-        for (int j = 1; j < m; j++)
+        for (size_t j = 1; j < m; j++)
         {
             if (array[i][j] > max)
             {
@@ -239,12 +251,12 @@ int** insertColumn(int** array, const size_t n, const size_t m)
         throw out_of_range("Массив не определен!");
     }
 
-    for (int i = 0; i < n; i++)
+    for (size_t i = 0; i < n; i++)
     {
         int max = array[i][0];
         int max_j = 0;
 
-        for (int j = 1; j < m; j++)
+        for (size_t j = 1; j < m; j++)
         {
             if (array[i][j] > max)
             {
@@ -257,11 +269,14 @@ int** insertColumn(int** array, const size_t n, const size_t m)
     return array;
 }
 
-void deleteArray(int** array, const size_t n, const size_t m)
+void deleteArray(int** array, const size_t n)
 {
-    if (array != nullptr)
+    for(size_t i = 0; i < n; i++)
     {
-        delete[] array;
-        array = nullptr;
+        if (array != nullptr)
+        {
+            delete[] array[i];
+            array = nullptr;
+        }
     }
 }
