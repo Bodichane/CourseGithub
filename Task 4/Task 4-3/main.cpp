@@ -261,10 +261,10 @@ int** insertColumn(int** array, const size_t n, const size_t m)
             if (array[i][j] > max)
             {
                 max = array[i][j];
-                max_j = j + 1;
+                max_j = j;
             }
         }
-        array[i][max_j] *= 0;
+        array[i][max_j + 1] *= 0;
     }
     return array;
 }
